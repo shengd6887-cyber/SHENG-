@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-velvet-gray: #E5E5E5;
+  --color-champagne-gold: #D4AF37;
+  --color-rock-black: #1A1A1A;
+  --color-gold-muted: #BFA37E;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+@layer base {
+  body {
+    @apply bg-rock-black text-velvet-gray selection:bg-champagne-gold selection:text-rock-black;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .mask-arch {
+    mask-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 100C10 50 30 0 50 0C70 0 90 50 90 100H10Z' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  @keyframes wave {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+
+  @keyframes slow-blob {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(0deg); }
+    33% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: rotate(5deg); }
+    66% { border-radius: 70% 30% 40% 60% / 30% 70% 60% 30%; transform: rotate(-5deg); }
+  }
+
+  .animate-wave {
+    animation: wave 4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .animate-slow-blob {
+    animation: slow-blob 20s ease-in-out infinite transform-gpu;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BFA37E;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
